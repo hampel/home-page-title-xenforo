@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="HomepageTitle" title="Homepage Title" version_string="0.1.0" version_id="1" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+<addon addon_id="HomepageTitle" title="Homepage Title" version_string="1.0.0" version_id="2" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
@@ -10,17 +10,41 @@
   <cron/>
   <email_templates/>
   <email_template_modifications/>
-  <optiongroups/>
+  <optiongroups>
+    <option option_id="homepageTitle" edit_format="textbox" data_type="string" can_backup="1">
+      <default_value></default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <relation group_id="basicBoard" display_order="12"/>
+    </option>
+  </optiongroups>
   <permissions>
     <permission_groups/>
     <permissions/>
     <interface_groups/>
   </permissions>
-  <phrases/>
+  <phrases>
+    <phrase title="option_homepageTitle" version_id="1" version_string="0.1.0"><![CDATA[Homepage Title]]></phrase>
+    <phrase title="option_homepageTitle_explain" version_id="1" version_string="0.1.0"><![CDATA[Set a different title for the forum home page (forum_list)]]></phrase>
+  </phrases>
   <route_prefixes/>
   <style_properties/>
   <templates/>
-  <public_template_modifications/>
+  <public_template_modifications>
+    <modification template="forum_list" modification_key="homepageTitleForumList" description="modify board title on forum list" execution_order="9" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:h1>{$xenOptions.boardTitle}</xen:h1>]]></find>
+      <replace><![CDATA[<xen:if is="{$xenOptions.homepageTitle}">
+	<xen:container var="$homePageTitle">{$xenOptions.homepageTitle}</xen:container>
+	<xen:h1>{$xenOptions.homepageTitle}</xen:h1>
+<xen:else />
+	$0
+</xen:if>]]></replace>
+    </modification>
+    <modification template="PAGE_CONTAINER" modification_key="homepageTitlePageContainer" description="Add home page title to page container" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<title><xen:if is="{$title}">{xen:raw $title} | {$xenOptions.boardTitle}<xen:else />{$xenOptions.boardTitle}</xen:if></title>]]></find>
+      <replace><![CDATA[<title><xen:if is="{$homePageTitle}">{xen:raw $homePageTitle}<xen:elseif is="{$title}" />{xen:raw $title} | {$xenOptions.boardTitle}<xen:else />{$xenOptions.boardTitle}</xen:if></title>]]></replace>
+    </modification>
+  </public_template_modifications>
   <bb_code_media_sites/>
   <bb_codes/>
 </addon>
