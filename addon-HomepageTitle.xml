@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<addon addon_id="HomepageTitle" title="Homepage Title" version_string="1.0.0" version_id="2" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
+<addon addon_id="HomepageTitle" title="Homepage Title" version_string="1.0.1" version_id="3" url="" install_callback_class="" install_callback_method="" uninstall_callback_class="" uninstall_callback_method="">
   <admin_navigation/>
   <admin_permissions/>
   <admin_style_properties/>
@@ -39,6 +39,10 @@
 <xen:else />
 	$0
 </xen:if>]]></replace>
+    </modification>
+    <modification template="forum_list" modification_key="homepageTitleForumListOG" description="modify board title on forum list in open graph" execution_order="10" enabled="1" action="str_replace">
+      <find><![CDATA[<xen:set var="$title">{$xenOptions.boardTitle}</xen:set>]]></find>
+      <replace><![CDATA[<xen:set var="$title">{xen:if $xenOptions.homepageTitle, $xenOptions.homepageTitle, $xenOptions.boardTitle}</xen:set>]]></replace>
     </modification>
     <modification template="PAGE_CONTAINER" modification_key="homepageTitlePageContainer" description="Add home page title to page container" execution_order="10" enabled="1" action="str_replace">
       <find><![CDATA[<title><xen:if is="{$title}">{xen:raw $title} | {$xenOptions.boardTitle}<xen:else />{$xenOptions.boardTitle}</xen:if></title>]]></find>
