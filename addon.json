@@ -1,14 +1,22 @@
 {
     "legacy_addon_id": "HomepageTitle",
     "title": "Home Page Title",
-    "description": "",
+    "description": "Set a custom title for the home page instead of boardTitle",
     "version_id": 2000070,
     "version_string": "2.0.0",
-    "dev": "",
-    "dev_url": "",
+    "dev": "Simon Hampel",
+    "dev_url": "https://bitbucket.org/hampel/",
     "faq_url": "",
-    "support_url": "",
-    "extra_urls": [],
-    "require": [],
-    "icon": ""
+    "support_url": "https://bitbucket.org/hampel/home-page-title-xenforo/issues",
+    "extra_urls": {
+        "Git Repository": "https://bitbucket.org/hampel/home-page-title-xenforo",
+        "Twitter": "https://twitter.com/SimonHampel"
+    },
+    "require": {
+        "XF": [
+            "2000070",
+            "XenForo 2.0.0+"
+        ]
+    },
+    "icon": "fa-home"
 }
