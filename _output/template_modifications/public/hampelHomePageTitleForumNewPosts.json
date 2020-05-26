@@ -5,5 +5,5 @@
     "enabled": true,
     "action": "str_replace",
     "find": "<xf:h1>{$xf.options.boardTitle}</xf:h1>",
-    "replace": "<xf:if is=\"{$xf.options.hampelHomePageTitle}\">\n\t<xf:h1>{$xf.options.hampelHomePageTitle}</xf:h1>\n<xf:else />\n\t$0\n</xf:if>\n"
+    "replace": "<xf:h1>{{ $xf.options.hampelHomePageTitle ?: $xf.options.boardTitle }}</xf:h1>"
 }
