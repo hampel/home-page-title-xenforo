@@ -1,0 +1,9 @@
+{
+    "template": "PAGE_CONTAINER",
+    "description": "Change title for home page",
+    "execution_order": 10,
+    "enabled": true,
+    "action": "str_replace",
+    "find": "<title><xf:title formatter=\"%s | %s\" fallback=\"{$xf.options.boardTitle}\" page=\"{$pageNumber}\" /></title>",
+    "replace": "<xf:if is=\"{$template} == 'forum_list' && {$xf.options.forumsDefaultPage} == 'forums'\">\n\t<title>{$xf.options.hampelHomePageTitle}</title>\n<xf:elseif is=\"{$template} == 'forum_new_posts' && {$xf.options.forumsDefaultPage} == 'new_posts'\" />\n\t<title>{$xf.options.hampelHomePageTitle}</title>\n<xf:else />\n\t$0\n</xf:if>\n"
+}

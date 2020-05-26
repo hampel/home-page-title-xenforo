@@ -1,0 +1,9 @@
+{
+    "template": "forum_new_posts",
+    "description": "Replace h1 on forum_new_posts",
+    "execution_order": 10,
+    "enabled": true,
+    "action": "str_replace",
+    "find": "<xf:h1>{$xf.options.boardTitle}</xf:h1>",
+    "replace": "<xf:h1>{$xf.options.hampelHomePageTitle}</xf:h1>"
+}
