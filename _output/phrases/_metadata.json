@@ -5,11 +5,23 @@
         "version_string": "2.0.0",
         "hash": "bfeb95b6fff23fe16dd1dd231cadb451"
     },
+    "option.hampelHomePageTitleReplaceMetadata.txt": {
+        "global_cache": false,
+        "version_id": 2000070,
+        "version_string": "2.0.0",
+        "hash": "661948f6459340174c400fca55e3844c"
+    },
     "option_explain.hampelHomePageTitle.txt": {
         "global_cache": false,
         "version_id": 2000070,
         "version_string": "2.0.0",
         "hash": "24ad8c6eb99028a64278e95528584665"
+    },
+    "option_explain.hampelHomePageTitleReplaceMetadata.txt": {
+        "global_cache": false,
+        "version_id": 2000070,
+        "version_string": "2.0.0",
+        "hash": "320268cde5f5539cbf56a5b11d2244c2"
     },
     "option_group.hampelHomePageTitle.txt": {
         "global_cache": false,
