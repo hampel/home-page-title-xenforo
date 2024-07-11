@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+2.0.1 (2024-07-12)
+------------------
+
+* update template modifications to work with XF 2.3
+
 2.0.0 (2020-05-26)
 -------------------
 
