@@ -7,15 +7,15 @@
     "dev": "Simon Hampel",
     "dev_url": "https://xenforo.com/community/members/sim.4264/",
     "faq_url": "",
-    "support_url": "https://bitbucket.org/hampel/home-page-title-xenforo/issues",
+    "support_url": "https://xenforo.com/community/threads/home-page-title.180858/",
     "extra_urls": {
-        "Git Repository": "https://bitbucket.org/hampel/home-page-title-xenforo",
-        "Twitter": "https://twitter.com/SimonHampel"
+        "Addon": "https://xenforo.com/community/resources/home-page-title.7819/",
+        "Git Repository": "https://github.com/hampel/home-page-title-xenforo.git"
     },
     "require": {
         "XF": [
-            "2000070",
-            "XenForo 2.0.0+"
+            "2020070",
+            "XenForo 2.2.0+"
         ]
     },
     "icon": "fa-home"
