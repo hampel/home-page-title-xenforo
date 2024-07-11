@@ -5,5 +5,5 @@
     "enabled": true,
     "action": "str_replace",
     "find": "<title><xf:title formatter=\"%s | %s\" fallback=\"{$xf.options.boardTitle}\" page=\"{$pageNumber}\" /></title>",
-    "replace": "<xf:if is=\"{$xf.options.hampelHomePageTitle} && {$template} == 'forum_list' && {$xf.options.forumsDefaultPage} == 'forums'\">\n\t<title>{$xf.options.hampelHomePageTitle}</title>\n<xf:elseif is=\"{$xf.options.hampelHomePageTitle} && {$template} == 'forum_new_posts' && {$xf.options.forumsDefaultPage} == 'new_posts'\" />\n\t<title>{$xf.options.hampelHomePageTitle}</title>\n<xf:else />\n\t$0\n</xf:if>"
+    "replace": "<xf:if is=\"{$xf.options.hampelHomePageTitle} && {$template} == 'forum_list' && {$xf.options.forumsDefaultPage} == 'forums'\">\n\t\t<title>{$xf.options.hampelHomePageTitle}</title>\n\t<xf:elseif is=\"{$xf.options.hampelHomePageTitle} && {$template} == 'forum_new_posts' && {$xf.options.forumsDefaultPage} == 'new_posts'\" />\n\t\t<title>{$xf.options.hampelHomePageTitle}</title>\n\t<xf:else />\n\t\t$0\n\t</xf:if>"
 }

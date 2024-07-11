@@ -3,7 +3,7 @@
     "description": "Replace home page title in metadata",
     "execution_order": 10,
     "enabled": true,
-    "action": "str_replace",
-    "find": "<xf:macro template=\"metadata_macros\" name=\"title\" arg-title=\"{{ page_title() ?: $siteName }}\" arg-output=\"{{ true }}\" />",
-    "replace": "<xf:if is=\"{$xf.options.hampelHomePageTitleReplaceMetadata} && {$xf.options.hampelHomePageTitle} && {$template} == 'forum_list' && {$xf.options.forumsDefaultPage} == 'forums'\">\n\t<xf:macro template=\"metadata_macros\" name=\"title\" arg-title=\"{$xf.options.hampelHomePageTitle}\" arg-output=\"{{ true }}\" />\n<xf:elseif is=\"{$xf.options.hampelHomePageTitleReplaceMetadata} && {$xf.options.hampelHomePageTitle} && {$template} == 'forum_new_posts' && {$xf.options.forumsDefaultPage} == 'new_posts'\" />\n\t<xf:macro template=\"metadata_macros\" name=\"title\" arg-title=\"{$xf.options.hampelHomePageTitle}\" arg-output=\"{{ true }}\" />\n<xf:else />\n\t$0\n</xf:if>"
+    "action": "preg_replace",
+    "find": "#(<xf:macro (id=\"metadata_macros::title\"|template=\"metadata_macros\" name=\"title\")[^/]*/>)#simU",
+    "replace": "<xf:if is=\"{$xf.options.hampelHomePageTitleReplaceMetadata} && {$xf.options.hampelHomePageTitle} && {$template} == 'forum_list' && {$xf.options.forumsDefaultPage} == 'forums'\">\n\t\t\t<xf:macro template=\"metadata_macros\" name=\"title\" arg-title=\"{$xf.options.hampelHomePageTitle}\" arg-output=\"{{ true }}\" />\n\t\t<xf:elseif is=\"{$xf.options.hampelHomePageTitleReplaceMetadata} && {$xf.options.hampelHomePageTitle} && {$template} == 'forum_new_posts' && {$xf.options.forumsDefaultPage} == 'new_posts'\" />\n\t\t\t<xf:macro template=\"metadata_macros\" name=\"title\" arg-title=\"{$xf.options.hampelHomePageTitle}\" arg-output=\"{{ true }}\" />\n\t\t<xf:else />\n\t\t\t$0\n\t\t</xf:if>"
 }
