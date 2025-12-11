@@ -5,12 +5,5 @@ This XenForo 2.x addon allows you to set a custom title for the home page instea
 
 By [Simon Hampel](https://xenforo.com/community/members/sim.4264/).
 
-Requirements
-------------
-
-This addon works on XenForo 2.x
-
-Usage
------
-
-Set a custom title in the options to have it replace on the home page
+* [Addon: Home Page Title](https://xenforo.com/community/resources/home-page-title.7819/)
+* [Discussion and support: Home Page Title](https://xenforo.com/community/threads/home-page-title.180858/)
