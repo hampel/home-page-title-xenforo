@@ -7,8 +7,9 @@ that the custom title appears on the home page and nowhere else.
 ## Surfaces
 
 **Four template modifications and two options** — no class extensions, code event listeners or
-templates. `Setup.php` has no install or upgrade steps; on XF 2.3 and later its `postUpgrade()`
-queues the standard post-upgrade file clean-up.
+templates. `Setup.php` has no install steps. On an upgrade from the XF1 1.x add-on it copies the
+old `homepageTitle` option's value into `hampelHomePageTitle`, and on XF 2.3 and later its
+`postUpgrade()` queues the standard post-upgrade file clean-up.
 
 | modification | template | replaces |
 |---|---|---|
@@ -96,6 +97,8 @@ queues the standard post-upgrade file clean-up.
 - **The rendering checks above have been run on XF 2.3.** The home page test in the core
   templates is the same on 2.2, and every `find` string matches 2.2's master templates, but a page
   render on 2.2 needs an install of that version.
-- **Upgrading from the XF1 1.x add-on is untested.** The 1.x add-on stored its title in a
-  differently named option, and nothing on a development install can present a forum that came
-  through XenForo's own 1.x to 2.x upgrade.
+- **Upgrading from the XF1 1.x add-on needs a real XF1 forum.** After XenForo's own 1.x to 2.x
+  upgrade, install this add-on over the legacy one and confirm the home page title set under 1.x
+  is now the value of *Home Page Title*. Nothing on a development install can present a forum that
+  came through that upgrade, and whether the old `homepageTitle` row survives it is what decides
+  whether the migration has anything to read.

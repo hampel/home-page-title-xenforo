@@ -5,8 +5,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Home Page Title is a XenForo add-on (`Hampel/HomePageTitle`, requires XF 2.2.0+) that lets an admin
 set a title for the forum home page other than the board title. The repository root is the add-on
 directory, `src/addons/Hampel/HomePageTitle/` inside a XenForo install. There are no Composer
-dependencies and no tests, and the only PHP is `Setup.php`: **the add-on is two options and four
-template modifications in `_output/`.**
+dependencies and no tests, and the only PHP is `Setup.php`, which migrates the XF1 add-on's setting:
+**the add-on is two options and four template modifications in `_output/`.**
 
 ## The title is swapped in three places, and each must agree with core on what "home" means
 
@@ -48,11 +48,25 @@ modification as `ok` with an apply count of 0**, so the page quietly reverts to 
 nothing errors. The apply count is the check: *Appearance > Template modifications* in the admin
 control panel, or the `xf_template_modification_log` table. Each should apply exactly once.
 
-## `Setup.php` guards a 2.3-only call
+## `Setup.php` carries the XF1 title across, and guards a 2.3-only call
+
+**An upgrade from the XF1 1.x add-on is a real upgrade path**, through `legacy_addon_id`: XF treats
+the XF1 add-on's record as the installed version. The 1.x add-on stored its title in an option named
+`homepageTitle`, which the data import deletes because 2.x does not define it. So `upgrade()` —
+which runs after `preUpgrade()` has moved the old option to this add-on's id and before the import —
+reads the value and stashes it in the data registry, and `postUpgrade()`, which runs after the
+import, sets `hampelHomePageTitle` from it unless that already holds a title. The registry is what
+carries the value across: in the admin control panel the import runs as a job, so the two methods
+are not in the same request.
+
+It is keyed on the old option row existing, not on a version number, so an ordinary 2.x upgrade
+reads nothing and does nothing. **It has not been proven against a forum that came through
+XenForo's own 1.x to 2.x upgrade**, which is the only thing that shows the old row survives that
+far.
 
 `postUpgrade()` calls `enqueuePostUpgradeCleanUp()` only when `\XF::$versionId >= 2030000`, because
-that method does not exist on XF 2.2 and the add-on still installs there. Install, upgrade and
-uninstall steps are otherwise empty — options and modifications come from `_output/`.
+that method does not exist on XF 2.2 and the add-on still installs there. Options and modifications
+come from `_output/`.
 
 ## Commands
 
