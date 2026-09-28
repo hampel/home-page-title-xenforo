@@ -60,9 +60,10 @@ carries the value across: in the admin control panel the import runs as a job, s
 are not in the same request.
 
 It is keyed on the old option row existing, not on a version number, so an ordinary 2.x upgrade
-reads nothing and does nothing. **It has not been proven against a forum that came through
-XenForo's own 1.x to 2.x upgrade**, which is the only thing that shows the old row survives that
-far.
+reads nothing and does nothing. The XenForo 2 half is tested by planting the legacy rows in a
+disposable forum — `TESTING.md` has the recipe and its control. **It has not been proven against a
+forum that came through XenForo's own 1.x to 2.x upgrade**, which is the only thing that shows the
+old row survives that far.
 
 `postUpgrade()` calls `enqueuePostUpgradeCleanUp()` only when `\XF::$versionId >= 2030000`, because
 that method does not exist on XF 2.2 and the add-on still installs there. Options and modifications

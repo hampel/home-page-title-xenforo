@@ -89,16 +89,28 @@ old `homepageTitle` option's value into `hampelHomePageTitle`, and on XF 2.3 and
   restore in an exit trap, so a failed run cannot leave the options changed. The second row is the
   regression check for the 2.0.3 fix; it showed the custom title before it.
 
+- **The upgrade path, in a disposable forum with development mode off.** Install the last published
+  release from its zip, set a title, then upgrade to the new zip. The upgrade must report
+  *Importing add-on data*, not *All data imported* — the second is the development-mode shortcut and
+  proves nothing. Then run the job queue (`xf:run-jobs`), and check that the title is kept, each
+  modification applies once, the home page renders it, and `xf_error_log` gained no rows. Run the
+  probe table above on the same forum, on each supported XenForo line.
+- **The XenForo 2 half of an upgrade from the XF1 add-on.** On a disposable forum, uninstall this
+  add-on, then create the state XenForo's own 2.0 upgrade leaves: an `xf_addon` row for
+  `HomepageTitle` with `version_id` 3, `active` 0 and `is_legacy` 1, and an `xf_option` row
+  `homepageTitle` owned by `HomepageTitle` holding a title. Upgrade from the new zip: the title
+  must arrive in `hampelHomePageTitle`, the old row must be gone, and no
+  `hampelHomePageTitleLegacy` key may be left in `xf_data_registry`. **Run the same with the
+  previous release as the control** — it must lose the title, or the test is not exercising the
+  migration. An empty old value must set nothing.
+
 ## Needs a human
 
 - **Look at the home page in a browser** with a custom title set, in each of the two supported
   configurations (forum list, new posts): the heading, the browser tab title, and a link preview
   if one can be generated, for the metadata.
-- **The rendering checks above have been run on XF 2.3.** The home page test in the core
-  templates is the same on 2.2, and every `find` string matches 2.2's master templates, but a page
-  render on 2.2 needs an install of that version.
-- **Upgrading from the XF1 1.x add-on needs a real XF1 forum.** After XenForo's own 1.x to 2.x
-  upgrade, install this add-on over the legacy one and confirm the home page title set under 1.x
-  is now the value of *Home Page Title*. Nothing on a development install can present a forum that
-  came through that upgrade, and whether the old `homepageTitle` row survives it is what decides
-  whether the migration has anything to read.
+- **Upgrading from the XF1 1.x add-on needs a real XF1 forum.** The automated check above builds
+  the state XenForo's 2.0 upgrade is expected to leave; only a forum that actually came through
+  that upgrade shows the old `homepageTitle` row survives it. After the core upgrade, install this
+  add-on over the legacy one and confirm the home page title set under 1.x is now the value of
+  *Home Page Title*.
