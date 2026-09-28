@@ -1,1 +1,1 @@
-Custom title to display on home page instead of boardTitle
+Custom title to display on home page instead of the board title

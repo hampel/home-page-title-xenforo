@@ -13,9 +13,9 @@
     },
     "option_explain.hampelHomePageTitle.txt": {
         "global_cache": false,
-        "version_id": 2000070,
-        "version_string": "2.0.0",
-        "hash": "24ad8c6eb99028a64278e95528584665"
+        "version_id": 2000311,
+        "version_string": "2.0.3a1",
+        "hash": "d5f4c8dd083271567a1e482b86348d35"
     },
     "option_explain.hampelHomePageTitleReplaceMetadata.txt": {
         "global_cache": false,
@@ -31,8 +31,8 @@
     },
     "option_group_description.hampelHomePageTitle.txt": {
         "global_cache": false,
-        "version_id": 2000070,
-        "version_string": "2.0.0",
-        "hash": "fc94a77f66b40e6e5109799825c9cd56"
+        "version_id": 2000311,
+        "version_string": "2.0.3a1",
+        "hash": "bbcc986f2ba3c0d29918688c5f558adc"
     }
 }

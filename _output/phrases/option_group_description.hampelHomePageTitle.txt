@@ -1,1 +1,1 @@
-Configure custome home page title
+Configure custom home page title
