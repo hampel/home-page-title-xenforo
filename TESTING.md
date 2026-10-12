@@ -6,8 +6,10 @@ that the custom title appears on the home page and nowhere else.
 
 ## Surfaces
 
-**Four template modifications and two options** — no class extensions, code event listeners or
-templates. `Setup.php` has no install steps. On an upgrade from the XF1 1.x add-on it copies the
+**Four template modifications, two options and one code event listener** — no class extensions or
+templates. The listener answers `hampel_admin_api_redaction` with an empty declaration, since
+neither option is a secret; the event is fired only where an add-on that defines it is installed.
+`Setup.php` has no install steps. On an upgrade from the XF1 1.x add-on it copies the
 old `homepageTitle` option's value into `hampelHomePageTitle`, and on XF 2.3 and later its
 `postUpgrade()` queues the standard post-upgrade file clean-up.
 

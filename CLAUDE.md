@@ -5,8 +5,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Home Page Title is a XenForo add-on (`Hampel/HomePageTitle`, requires XF 2.2.0+) that lets an admin
 set a title for the forum home page other than the board title. The repository root is the add-on
 directory, `src/addons/Hampel/HomePageTitle/` inside a XenForo install. There are no Composer
-dependencies and no tests, and the only PHP is `Setup.php`, which migrates the XF1 add-on's setting:
-**the add-on is two options and four template modifications in `_output/`.**
+dependencies and no tests. The only PHP is `Setup.php`, which migrates the XF1 add-on's setting, and
+`Listener.php`, which declares that it has no secrets: **the add-on is two options and four template
+modifications in `_output/`.**
 
 ## The title is swapped in three places, and each must agree with core on what "home" means
 
@@ -68,6 +69,24 @@ old row survives that far.
 `postUpgrade()` calls `enqueuePostUpgradeCleanUp()` only when `\XF::$versionId >= 2030000`, because
 that method does not exist on XF 2.2 and the add-on still installs there. Options and modifications
 come from `_output/`.
+
+## `Listener.php` declares that neither option is a secret
+
+**It answers the `hampel_admin_api_redaction` code event with an empty entry for this add-on's id.**
+An add-on that reports a forum's configuration with the secrets removed fires that event, and shows
+an add-on's text settings only once the add-on has said which of them are secrets. Neither is here:
+the title is published in the page source and the other option is a switch.
+
+This is not a dependency. An event no installed add-on defines is never fired, so the listener sits
+unused elsewhere, and nothing goes in `addon.json`'s `require`. **Revisit the declaration whenever
+an option is added or renamed** — there is no test suite to catch it going stale.
+
+## No `config` or `validate` commands, deliberately
+
+**The add-on has nothing to report that the forum does not already show.** Its settings are a
+title and a switch, each its own evidence; nothing runs unattended; and a template modification
+that stops matching is already counted as not found in XenForo's own modification log summary.
+Add the commands if it ever gains a credential, a scheduled task or state outside the options page.
 
 ## Commands
 
