@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 2.0.4 (2026-10-12)
+
+- answer the `hampel_admin_api_redaction` code event to declare that neither option is a secret, so an add-on that reports a forum's configuration with secrets removed can show the home page title — this adds no dependency, and does nothing on a forum where no add-on defines that event
+
 ## 2.0.3 (2026-09-28)
 
 - only use the home page title for the page `<title>` and `og:title` when the forum list or new posts really is the home page — with the *Index page route* set elsewhere, such as *What's new*, the forum list at `forums/` was given the home page title
