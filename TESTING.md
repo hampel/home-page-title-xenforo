@@ -97,6 +97,11 @@ old `homepageTitle` option's value into `hampelHomePageTitle`, and on XF 2.3 and
   proves nothing. Then run the job queue (`xf:run-jobs`), and check that the title is kept, each
   modification applies once, the home page renders it, and `xf_error_log` gained no rows. Run the
   probe table above on the same forum, on each supported XenForo line.
+- **The listener, on a forum with no add-on that defines its event.** After the upgrade above,
+  `xf_code_event_listener` should hold one active row for this add-on on
+  `hampel_admin_api_redaction`, `xf_code_event` should hold none for that event, and the forum index
+  and `admin.php` should still render with nothing new in `xf_error_log`. Uninstalling the add-on
+  should remove the row, both options and leave no error.
 - **The XenForo 2 half of an upgrade from the XF1 add-on.** On a disposable forum, uninstall this
   add-on, then create the state XenForo's own 2.0 upgrade leaves: an `xf_addon` row for
   `HomepageTitle` with `version_id` 3, `active` 0 and `is_legacy` 1, and an `xf_option` row
